@@ -13,10 +13,10 @@ namespace DoorToGate.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IAirportClient _airportClient;
+        private readonly ITSAClient _airportClient;
         private readonly IAirportCodeClient _airportCodeClient;
 
-        public HomeController(IAirportClient airportClient, IAirportCodeClient airportCodeClient)
+        public HomeController(ITSAClient airportClient, IAirportCodeClient airportCodeClient)
         {
             _airportClient = airportClient;
             _airportCodeClient = airportCodeClient;
@@ -28,6 +28,8 @@ namespace DoorToGate.Controllers
 
             return View(clientResult);
         }
+
+        
 
         public async Task<IActionResult> GetWaitTime(string airport)
         {

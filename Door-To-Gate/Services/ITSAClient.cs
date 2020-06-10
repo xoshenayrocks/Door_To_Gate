@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DoorToGate.Services
 {
-    public interface IAirportClient
+    public interface ITSAClient
     {
-        Task<AirportWait> GetAirport(string airport);
+        Task<TSAWaitTime> GetAirport(string airport);
     }
 }

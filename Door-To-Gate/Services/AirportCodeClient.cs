@@ -18,7 +18,7 @@ namespace DoorToGate.Services
         {
             try
             {
-                var endpoint = $"flights?access_key=f415a6133de905c91e276fc3ef678ede";
+                var endpoint = $"airports?access_key=f415a6133de905c91e276fc3ef678ede&country_name=United States";
                 var response = await _client.GetAsync(endpoint);
                 var json = await response.Content.ReadAsStringAsync();
                 return JsonSerializer.Deserialize<AirportCode>(json);

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DoorToGate.Models
 {
-    public class AirportWait
+    public class TSAWaitTime
     {
         public string city { get; set; }
         public string code { get; set; }

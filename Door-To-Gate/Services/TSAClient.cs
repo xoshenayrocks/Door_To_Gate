@@ -5,23 +5,23 @@ using System.Threading.Tasks;
 
 namespace DoorToGate.Services
 {
-    public class AirportClient : IAirportClient
+    public class TSAClient : ITSAClient
     {
         private readonly HttpClient _client;
 
-        public AirportClient(HttpClient httpClient)
+        public TSAClient(HttpClient httpClient)
         {
             _client = httpClient;
         }
 
-        public async Task<AirportWait> GetAirport(string airport)
+        public async Task<TSAWaitTime> GetAirport(string airport)
         {
             try
             {
                 var endpoint = $"{airport}/JSON/";
                 var response = await _client.GetAsync(endpoint);
                 var json = await response.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<AirportWait>(json);
+                return JsonSerializer.Deserialize<TSAWaitTime>(json);
 
             }
             catch (HttpRequestException e)
