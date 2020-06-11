@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿@model DoorToGate.Models.AirportCode
+@model DoorToGate.Models.AirportCode
 
 
 <form asp-action="GetWaitTime" asp-controller="Home">
@@ -22,13 +21,13 @@
 
 
     <br />
-   <label>Please input the address from which you are leaving: </label> @Html.TextBoxFor(m => m.Location, null) <br />
+    <label>Please input the address from which you are leaving: </label> @Html.TextBoxFor(m => m.Location, null) <br />
     <label>Please select the airport from which you are traveling: </label><select asp-for="AirportName" name="airport" id="airport">
         @{
             foreach (var code in Model.data)
             {
                 <option value="@code.airport_name">@code.iata_code - @code.airport_name</option>
-               // <a asp-controller="Home" asp-action="TravelTime" asp-route-airport="@code.airport_name">Submit</a>
+                // <a asp-controller="Home" asp-action="TravelTime" asp-route-airport="@code.airport_name">Submit</a>
             }
         }
     </select>
@@ -42,55 +41,53 @@
 </form>
 
 
+@*
+    <h2>Hey look at these airport codes</h2>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Airport Codes
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">
+                <ul>
+                    @foreach (var code in Model.data)
+                    {
+                        <li>
+                            <h4>@code.airport_name</h4>
+                            <h4>@code.iata_code</h4>
+                        </li>
+                    }
+                </ul>
+            </a>
 
-=======
-﻿@model DoorToGate.Models.AirportCode
-
-<h2>Hey look at these airport codes</h2>
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Airport Codes
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">
-            <ul>
-                @foreach (var code in Model.data)
-                {
-                    <li>
-                        <h4>@code.airport_name</h4>
-                        <h4>@code.iata_code</h4>
-                    </li>
-                }
-            </ul>
-        </a>
-
+        </div>
     </div>
-</div>
-<h1>Please enter the airport code you would like information for</h1>
+    <h1>Please enter the airport code you would like information for</h1>
 
 
-<form asp-action="GetWaitTime" asp-controller="Home">
+    <form asp-action="GetWaitTime" asp-controller="Home">
 
-    <div>
+        <div>
 
-        <input type="text" name="Airport" />
+            <input type="text" name="Airport" />
 
-        <button type="submit" class="btn btn-primary">"submit"</button>
+            <button type="submit" class="btn btn-primary">"submit"</button>
 
-    </div>
+        </div>
 
-</form>
+    </form>
 
-<h1>Please enter the Email address you would like to use</h1>
-<form asp-action="GetWaitTime" asp-controller="Home">
+    <h1>Please enter the Email address you would like to use</h1>
+    <form asp-action="GetWaitTime" asp-controller="Home">
 
-    <div>
+        <div>
 
-        <input type="text" name="Email Address" />
+            <input type="text" name="Email Address" />
 
-        <button type="submit" class="btn btn-primary">"submit"</button>
+            <button type="submit" class="btn btn-primary">"submit"</button>
 
-    </div>
+        </div>
 
-</form>
->>>>>>> 289df47cacb01a81635332881db8feb65b8373f2
+    </form>
+*@
+

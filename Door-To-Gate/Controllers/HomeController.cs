@@ -31,13 +31,9 @@ namespace DoorToGate.Controllers
             return View(clientResult);
         }
 
-<<<<<<< HEAD
-        public async Task<IActionResult> GetWaitTime(AirportCode model)
-=======
-        
 
-        public async Task<IActionResult> GetWaitTime(string airport)
->>>>>>> 289df47cacb01a81635332881db8feb65b8373f2
+        public async Task<IActionResult> GetWaitTime(AirportCode model)
+
         {
             var clientResult = await _airportClient.GetAirport(model.AirportName);
 
