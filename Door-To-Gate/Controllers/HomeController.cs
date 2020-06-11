@@ -42,7 +42,7 @@ namespace DoorToGate.Controllers
 
         public IActionResult TravelTime(AirportCode model)
         {
-            string time = Request.Query["time"];
+            string time = Request.Form["time"];
             model.AirportName = Request.Form["airport"];
             string hourMin = time.Substring(0, 5);
             time = DateTime.Parse(hourMin).ToString("hh:mm tt");
