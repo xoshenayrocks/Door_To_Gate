@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{28FA27B6-52C8-4FDB-8415-751960929E52}|Default">
   <MonoDevelop.Ide.ItemProperties.Door-To-Gate PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Door-To-Gate/Services/AirportClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Door-To-Gate/Views/Home/Index.cshtml">
     <Files>
-      <File FileName="Door-To-Gate/Views/Home/Index.cshtml" Line="25" Column="67" />
-      <File FileName="Door-To-Gate/Models/AirportCode.cs" Line="9" Column="29" />
-      <File FileName="Door-To-Gate/Controllers/HomeController.cs" Line="49" Column="1" />
-      <File FileName="Door-To-Gate/Services/AirportCodeClient.cs" Line="1" Column="1" />
-      <File FileName="Door-To-Gate/Services/AirportClient.cs" Line="1" Column="1" />
+      <File FileName="Door-To-Gate/Views/Home/Index.cshtml" Line="38" Column="29" />
+      <File FileName="Door-To-Gate/Models/AirportCode.cs" Line="37" Column="1" />
+      <File FileName="Door-To-Gate/Controllers/HomeController.cs" Line="96" Column="1" />
+      <File FileName="Door-To-Gate/Services/AirportCodeClient.cs" Line="34" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,11 +14,11 @@
             <Node name="Door-To-Gate" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="AirportClient.cs" selected="True" />
-              </Node>
+              <Node name="Services" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
+                <Node name="Home" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -34,8 +33,6 @@
       <Breakpoint file="/Users/shenayrussell/Projects/Door_To_Gate copy/Door-To-Gate/Views/Home/TravelTime.cshtml" relfile="Door-To-Gate/Views/Home/TravelTime.cshtml" line="6" column="1" />
       <Breakpoint file="/Users/shenayrussell/Projects/Door_To_Gate copy/Door-To-Gate/Models/TravelTimeViewModel.cs" relfile="Door-To-Gate/Models/TravelTimeViewModel.cs" line="6" column="1" />
       <Breakpoint file="/Users/shenayrussell/Projects/Door_To_Gate copy/Door-To-Gate/Models/TravelTimeViewModel.cs" relfile="Door-To-Gate/Models/TravelTimeViewModel.cs" line="7" column="1" />
-      <Breakpoint file="/Users/shenayrussell/Projects/Door_To_Gate copy/Door-To-Gate/Controllers/HomeController.cs" relfile="Door-To-Gate/Controllers/HomeController.cs" line="60" column="1" />
-      <Breakpoint file="/Users/shenayrussell/Projects/Door_To_Gate copy/Door-To-Gate/Controllers/HomeController.cs" relfile="Door-To-Gate/Controllers/HomeController.cs" line="44" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

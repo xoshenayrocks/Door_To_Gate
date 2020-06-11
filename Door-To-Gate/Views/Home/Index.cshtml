@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@model DoorToGate.Models.AirportCode
 
 
@@ -42,3 +43,54 @@
 
 
 
+=======
+﻿@model DoorToGate.Models.AirportCode
+
+<h2>Hey look at these airport codes</h2>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Airport Codes
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">
+            <ul>
+                @foreach (var code in Model.data)
+                {
+                    <li>
+                        <h4>@code.airport_name</h4>
+                        <h4>@code.iata_code</h4>
+                    </li>
+                }
+            </ul>
+        </a>
+
+    </div>
+</div>
+<h1>Please enter the airport code you would like information for</h1>
+
+
+<form asp-action="GetWaitTime" asp-controller="Home">
+
+    <div>
+
+        <input type="text" name="Airport" />
+
+        <button type="submit" class="btn btn-primary">"submit"</button>
+
+    </div>
+
+</form>
+
+<h1>Please enter the Email address you would like to use</h1>
+<form asp-action="GetWaitTime" asp-controller="Home">
+
+    <div>
+
+        <input type="text" name="Email Address" />
+
+        <button type="submit" class="btn btn-primary">"submit"</button>
+
+    </div>
+
+</form>
+>>>>>>> 289df47cacb01a81635332881db8feb65b8373f2
