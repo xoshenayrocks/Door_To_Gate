@@ -1,26 +1,44 @@
 ﻿@model DoorToGate.Models.AirportCode
 
-<h2>Hey look at these airport codes</h2>
-<ul>
-    @foreach (var code in Model.data)
-    {
-        <li>
-            <h4>@code.airport_name</h4>
-            <h4>@code.iata_code</h4>
-        </li>
-    }
-</ul>
-<h1>Please enter the airport code you would like information for</h1>
-
 
 <form asp-action="GetWaitTime" asp-controller="Home">
+    <select name="airports" id="airport">
+        @{
+            foreach (var code in Model.data)
+            {
+                <option value="@code.airport_name">@code.iata_code - @code.airport_name</option>
+                <a asp-controller="Home" asp-action="GetWaitTime" asp-route-airport="@code.airport_name">Submit</a>
+            }
+        }
+    </select>
+</form>
 
-    <div>
+<form asp-action="TravelTime" asp-controller="Home">
+    <h1>Please select if you would prefer to get your total travel time by the time you arrive to the airport or the time you leave your house</h1>
+    <br />
+    <label>Arrive By: </label> @Html.RadioButtonFor(m => m.ArriveBy, true)  <input asp-for="Time" type="time" step="60" name="time" id="time" /> <br />
+    <label>Depart by: </label> @Html.RadioButtonFor(m => m.ArriveBy, false)  <input asp-for="Time" type="time" step="60" name="time" id="time" />
 
-        <input type="text" name="Airport" />
 
-        <button type="submit" class="btn btn-primary">"submit"</button>
+    <br />
+   <label>Please input the address from which you are leaving: </label> @Html.TextBoxFor(m => m.Location, null) <br />
+    <label>Please select the airport from which you are traveling: </label><select asp-for="AirportName" name="airport" id="airport">
+        @{
+            foreach (var code in Model.data)
+            {
+                <option value="@code.airport_name">@code.iata_code - @code.airport_name</option>
+               // <a asp-controller="Home" asp-action="TravelTime" asp-route-airport="@code.airport_name">Submit</a>
+            }
+        }
+    </select>
 
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
     </div>
 
 </form>
+
+
+

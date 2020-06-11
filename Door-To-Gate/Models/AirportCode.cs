@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DoorToGate.Models
 {
     public class AirportCode
     {
+        [BindProperty]
+        public bool ArriveBy { get; set; }
+        public string[] ArriveorDepart { get; set; } = new string[] { "ArriveBy", "DepartBy" };
+        public string Location { get; set; }
+        public string AirportName { get; set; }
+        public DateTime Time { get; set; }
 
         public IEnumerable<Airport> data { get; set; }
 
