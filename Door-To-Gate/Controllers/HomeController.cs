@@ -40,10 +40,6 @@ namespace DoorToGate.Controllers
 
         public IActionResult TravelTime(AirportCode model)
         {
-
-            //var model = new AirportCode();
-           /* model.Location = location;
-            model.AirportName = airport;*/
             string time = Request.Query["time"];
             model.AirportName = Request.Form["airport"];
             string hourMin = time.Substring(0, 5);

@@ -10,7 +10,6 @@ namespace DoorToGate.Models
     {
         [BindProperty]
         public bool ArriveBy { get; set; }
-        public string[] ArriveorDepart { get; set; } = new string[] { "ArriveBy", "DepartBy" };
         public string Location { get; set; }
         public string AirportName { get; set; }
         public DateTime Time { get; set; }
