@@ -14,7 +14,7 @@
 </form>
 
 <form asp-action="TravelTime" asp-controller="Home">
-    <h1>Please select if you would prefer to get your total travel time by the time you arrive to the airport or the time you leave your house</h1>
+    Please select if you would prefer to get your total travel time by the time you arrive to the airport or the time you leave your house
     <br />
     <label>Arrive By: </label> @Html.RadioButtonFor(m => m.ArriveBy, true)  <input asp-for="Time" type="time" step="60" name="time" id="time" /> <br />
     <label>Depart by: </label> @Html.RadioButtonFor(m => m.ArriveBy, false)  <input asp-for="Time" type="time" step="60" name="time" id="time" />
@@ -22,11 +22,11 @@
 
     <br />
     <label>Please input the address from which you are leaving: </label> @Html.TextBoxFor(m => m.Location, null) <br />
-    <label>Please select the airport from which you are traveling: </label><select asp-for="AirportName" name="airport" id="airport">
+u    <label>Please select the airport from which you are traveling: </label><select asp-for="Code" name="airport" id="airport">
         @{
             foreach (var code in Model.data)
             {
-                <option value="@code.airport_name">@code.iata_code - @code.airport_name</option>
+                <option value="@code.iata_code">@code.iata_code - @code.airport_name</option>
                 // <a asp-controller="Home" asp-action="TravelTime" asp-route-airport="@code.airport_name">Submit</a>
             }
         }
