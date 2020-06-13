@@ -35,46 +35,44 @@ namespace DoorToGate.Controllers
         public async Task<IActionResult> GetWaitTime(AirportCode model)
 
         {
-            var clientResult = await _airportClient.GetAirport(model.AirportName);
+            var clientResult = await _airportClient.GetAirport(model.Code);
 
             return View(clientResult);
         }
 
-        public IActionResult TravelTime(AirportCode model)
+        public async Task<IActionResult> TravelTime(AirportCode model)
         {
+            TravelTimeViewModel travel = new TravelTimeViewModel();
+            travel.ArriveBy = model.ArriveBy;
             string time = Request.Form["time"];
-            model.AirportName = Request.Form["airport"];
+            model.Code = Request.Form["airport"];
+            var tsaWaitTime = await _airportClient.GetAirport(model.Code);
+            travel.TSAWaitTime = tsaWaitTime.rightnow/60;
             string hourMin = time.Substring(0, 5);
-            time = DateTime.Parse(hourMin).ToString("hh:mm tt");
+            time = DateTime.Parse(hourMin).ToString("h:mm tt");
             model.Time = Convert.ToDateTime(time);
+            travel.Time = model.Time;
             DirectionsRequest request = new DirectionsRequest();
             request.Key = "AIzaSyAD_-v70Gc1IQ2mfHkKTjCYBINKMlQ4I8I";
             request.Origin = new Location(model.Location);
-            request.Destination = new Location(model.AirportName);
+            request.Destination = new Location(model.Code);
             var response =  GoogleApi.GoogleMaps.Directions.Query(request);
 
-            double duration = response.Routes.First().Legs.First().Duration.Value / 60;
+            travel.DriveTime = response.Routes.First().Legs.First().Duration.Value / 3600D;
+            travel.TotalTravelTime = travel.DriveTime + travel.TSAWaitTime;
 
             if (model.ArriveBy)
             {
-                DateTime arriveby = model.Time;
-                DateTime updated = arriveby.AddMinutes(duration);
-                //logic for time it takes to get to airport.. are we introducing Google API here?
-                //to arrive by a certain time, take time it takes to get to airport selected (using Google API?) from user's location
-                //add or subtract that to user's current local time (and TSA wait time)
-                /*ex. if I want to arrive to DTW by 5pm and I am viewing the app at 12pm (say TSA wait time is 30 mins), I will need
-                  to leave by 4:10pm )
-
-                    DateTime arriveby = new DateTime(year, month, day, 17, 0, 0);
-                    DateTime updated = original.AddMinutes(-50));  <<subtracts 20 min drive time & 30 min wait time from time
-                            user states they want to arrive by*/
-
-                //display time needed to leave in order to arrive to airport by designated time
+                DateTime arriveByTime = model.Time;
+                DateTime updatedTime = arriveByTime.AddHours(-(travel.TotalTravelTime));
+                travel.LeaveTime = updatedTime.ToString("h:mm tt");
             }
             else
             {
-
+      
             }
+
+            ;
             return View();
         }
         public IActionResult Privacy()

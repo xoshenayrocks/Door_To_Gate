@@ -12,6 +12,7 @@ namespace DoorToGate.Models
         public bool ArriveBy { get; set; }
         public string Location { get; set; }
         public string AirportName { get; set; }
+       public string Code { get; set; }
         public DateTime Time { get; set; }
 
         public IEnumerable<Airport> data { get; set; }
