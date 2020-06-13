@@ -1,14 +1,18 @@
-﻿@model TravelTimeViewModel
+﻿@model Door_To_Gate.Models.TravelTimeViewModel
 
-
-@*
-<form asp-action="TravelTime" asp-controller="Home">
-
-    @Html.RadioButtonFor(m => m.ArriveBy, true) Arrival Time: <input asp-for="Time" type="time" step="60"/>
-    @Html.RadioButtonFor(m => m.ArriveBy, false) Departure Time: <input asp-for="Time" type="time" step="z" />
-
-    @Html.TextBoxFor(m => m.Location)
-    <input asp-for="Location" asp-route="location" />
-    <input asp-for="AirportName" asp-route="airport" />
-</form>*@
-
+<h1>
+    @if (Model.ArriveBy)
+    {
+        <p>
+            You want to arrive to @Model.Code by @Model.Time, so you should depart from @Model.Location by @Model.LeaveTime.
+            Your drive time will be @Model.DriveTime and your TSA wait time will be @Model.TSAWaitTime.
+        </p>
+    }
+    else
+    {
+        <p>
+            If you plan on leaving @Model.Location at @Model.Time, you will arrive to your assigned gate at @Model.Code by @Model.LeaveTime.
+            Your drive time will be @Model.DriveTime and your TSA wait time will be  @Model.TSAWaitTime.
+        </p>
+    }
+</h1> 

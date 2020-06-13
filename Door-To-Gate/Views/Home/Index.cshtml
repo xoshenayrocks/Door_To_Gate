@@ -1,18 +1,6 @@
 @model DoorToGate.Models.AirportCode
 
 
-<form asp-action="GetWaitTime" asp-controller="Home">
-    <select name="airports" id="airport">
-        @{
-            foreach (var code in Model.data)
-            {
-                <option value="@code.airport_name">@code.iata_code - @code.airport_name</option>
-                <a asp-controller="Home" asp-action="GetWaitTime" asp-route-airport="@code.airport_name">Submit</a>
-            }
-        }
-    </select>
-</form>
-
 <form asp-action="TravelTime" asp-controller="Home">
     Please select if you would prefer to get your total travel time by the time you arrive to the airport or the time you leave your house
     <br />
@@ -22,7 +10,7 @@
 
     <br />
     <label>Please input the address from which you are leaving: </label> @Html.TextBoxFor(m => m.Location, null) <br />
-u    <label>Please select the airport from which you are traveling: </label><select asp-for="Code" name="airport" id="airport">
+    <label>Please select the airport from which you are traveling: </label> <select asp-for="Code" name="airport" id="airport">
         @{
             foreach (var code in Model.data)
             {
