@@ -43,23 +43,28 @@ namespace DoorToGate.Controllers
         public async Task<IActionResult> TravelTime(AirportCode model)
         {
             TravelTimeViewModel travel = new TravelTimeViewModel();
+            travel.Location = model.Location;
             travel.ArriveBy = model.ArriveBy;
             string time = Request.Form["time"];
             model.Code = Request.Form["airport"];
             var tsaWaitTime = await _airportClient.GetAirport(model.Code);
+            travel.Code = model.Code;
             travel.TSAWaitTime = tsaWaitTime.rightnow/60;
             string hourMin = time.Substring(0, 5);
             time = DateTime.Parse(hourMin).ToString("h:mm tt");
             model.Time = Convert.ToDateTime(time);
-            travel.Time = model.Time;
+            travel.Time = model.Time.ToString("h:mm tt");
             DirectionsRequest request = new DirectionsRequest();
             request.Key = "AIzaSyAD_-v70Gc1IQ2mfHkKTjCYBINKMlQ4I8I";
             request.Origin = new Location(model.Location);
             request.Destination = new Location(model.Code);
             var response =  GoogleApi.GoogleMaps.Directions.Query(request);
 
-            travel.DriveTime = response.Routes.First().Legs.First().Duration.Value / 3600D;
-            travel.TotalTravelTime = travel.DriveTime + travel.TSAWaitTime;
+            double duration = response.Routes.First().Legs.First().Duration.Value / 3600D;
+            travel.TotalTravelTime = duration + travel.TSAWaitTime;
+
+            TimeSpan tt = TimeSpan.FromHours((duration));
+            travel.DriveTime = tt.Hours.ToString("00") + " hours" + " and" + tt.Minutes.ToString(" 00") + " minutes";
 
             if (model.ArriveBy)
             {
@@ -69,11 +74,13 @@ namespace DoorToGate.Controllers
             }
             else
             {
-      
+                DateTime arriveByTime = model.Time;
+                DateTime updatedTime = arriveByTime.AddHours((travel.TotalTravelTime));
+                travel.LeaveTime = updatedTime.ToString("h:mm tt");
             }
 
             ;
-            return View();
+            return View(travel);
         }
         public IActionResult Privacy()
         {
