@@ -10,6 +10,7 @@ using DoorToGate.Models;
 using DoorToGate.Services;
 using GoogleApi.Entities.Maps.Directions.Request;
 using GoogleApi.Entities.Common;
+using Door_To_Gate.Services;
 
 namespace DoorToGate.Controllers
 {
@@ -49,7 +50,8 @@ namespace DoorToGate.Controllers
             model.Code = Request.Form["airport"];
             var tsaWaitTime = await _airportClient.GetAirport(model.Code);
             travel.Code = model.Code;
-            travel.TSAWaitTime = tsaWaitTime.rightnow/60;
+            travel.TSAWaitTime = tsaWaitTime.rightnow;
+            var TSAduration = travel.TSAWaitTime / 60D;
             string hourMin = time.Substring(0, 5);
             time = DateTime.Parse(hourMin).ToString("h:mm tt");
             model.Time = Convert.ToDateTime(time);
@@ -61,10 +63,10 @@ namespace DoorToGate.Controllers
             var response =  GoogleApi.GoogleMaps.Directions.Query(request);
 
             double duration = response.Routes.First().Legs.First().Duration.Value / 3600D;
-            travel.TotalTravelTime = duration + travel.TSAWaitTime;
+            travel.TotalTravelTime = duration + TSAduration;
 
-            TimeSpan tt = TimeSpan.FromHours((duration));
-            travel.DriveTime = tt.Hours.ToString("00") + " hours" + " and" + tt.Minutes.ToString(" 00") + " minutes";
+            //TimeSpan tt = TimeSpan.FromHours((duration));
+            travel.DriveTime = TravelTimeClient.HoursMins(duration);
 
             if (model.ArriveBy)
             {

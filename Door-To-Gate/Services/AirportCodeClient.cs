@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static DoorToGate.Models.AirportCode;
 
 namespace DoorToGate.Services
 {
@@ -18,10 +19,11 @@ namespace DoorToGate.Services
         {
             try
             {
-                var endpoint = $"airports?access_key=f415a6133de905c91e276fc3ef678ede&country_name=United States";
-                var response = await _client.GetAsync(endpoint);
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<AirportCode>(json);
+  
+                    var endpoint = $"airports?access_key=7ef0c4bfc64dfe51c3a0cbeef08edd19&country_name=United States&limit=5000";
+                    var response = await _client.GetAsync(endpoint);
+                    var json = await response.Content.ReadAsStringAsync();
+                     return JsonSerializer.Deserialize<AirportCode>(json);
 
             }
             catch (HttpRequestException e)

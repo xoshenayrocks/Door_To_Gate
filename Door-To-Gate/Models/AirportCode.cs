@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DoorToGate.Models
 {
@@ -15,7 +18,9 @@ namespace DoorToGate.Models
        public string Code { get; set; }
         public DateTime Time { get; set; }
 
-        public IEnumerable<Airport> data { get; set; }
+        public Pagination pagination { get; set; }
+
+        public ICollection<Airport> data { get; set; }
 
         public class Airport
         {
@@ -31,6 +36,14 @@ namespace DoorToGate.Models
             public string country_name { get; set; }
             public string phone_number { get; set; }
             public string timezone { get; set; }
+        }
+
+        public partial class Pagination
+        {
+            public int offset { get; set; }
+            public int limit { get; set; }
+            public int count { get; set; }
+            public int total { get; set; }
         }
 
     }

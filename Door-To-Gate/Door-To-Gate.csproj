@@ -8,5 +8,22 @@
   <ItemGroup>
     <PackageReference Include="GoogleApi" Version="3.9.12" />
     <PackageReference Include="Google.Apis" Version="1.46.0" />
+    <PackageReference Include="Dapper" Version="2.0.35" />
   </ItemGroup>
+    
+     <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+    
+      <ItemGroup>
+    <PackageReference Include="Identity.Dapper" Version="0.8.3-alpha" />
+    <PackageReference Include="Identity.Dapper.SqlServer" Version="0.8.3-alpha" />
+  </ItemGroup>
+    
+      <ItemGroup>
+        <Folder Include="Models\AccountViewModels\" />
+        <Folder Include="Models\ManageViewModels\" />
+      </ItemGroup>
 </Project>
